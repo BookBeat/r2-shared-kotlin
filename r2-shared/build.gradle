@@ -11,18 +11,21 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.github.dcendents.android-maven'
-group='com.github.readium'
+group='com.github.bookbeatadmin'
 
 android {
     flavorDimensions "testapp"
 
-    compileSdkVersion 27
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    compileSdkVersion 26
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 27
-
+        targetSdkVersion 26
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
     buildTypes {
         release {
