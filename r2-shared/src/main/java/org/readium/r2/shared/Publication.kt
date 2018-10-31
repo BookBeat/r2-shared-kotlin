@@ -92,7 +92,8 @@ class Publication : Serializable {
         companion object : EnumCompanion<String, EXTENSION>(EXTENSION.values().associateBy(EXTENSION::value))
     }
 
-
+    //public var contentLengthInfo: ContentLengthInfo = ContentLengthInfo(spineContentLengthTuples: [])
+    var contentLengthInfo: ContentLengthInfo = ContentLengthInfo(emptyList())
     /// The kind of publication it is ( Epub, Cbz, ... )
     var type = TYPE.EPUB
     /// The version of the publication, if the type needs any.
