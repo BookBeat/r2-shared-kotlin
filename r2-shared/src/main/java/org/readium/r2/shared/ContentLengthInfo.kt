@@ -69,16 +69,16 @@ class ContentLengthInfo(contentLengthPairs: List<Pair<Link, Int>>) {
                 pageEndTotalProgress)
     }
 
-    fun positionFor(totalStartProgress: Double): PublicationPosition {
-        if (spineContentLengths.isEmpty()) throw Throwable("No spine info")
+    fun positionFor(totalStartProgress: Double): PublicationPosition? {
+        // this can happen sometimes - solve it by returning null and handle the position where it's used
+        if (spineContentLengths.isEmpty()) return null
         var theSpineInfo = spineContentLengths.first()
-
         var documentIndex = 0
         var startOfDocumentTotalProgress = 0.0
 
         while (totalStartProgress >= startOfDocumentTotalProgress + theSpineInfo.percentOfTotal) {
             val previousSpineInfo = theSpineInfo
-            if (documentIndex == spineContentLengths.size-1) break
+            if (documentIndex == spineContentLengths.size - 1) break
             documentIndex++
             theSpineInfo = spineContentLengths[documentIndex]
             startOfDocumentTotalProgress += previousSpineInfo.percentOfTotal
