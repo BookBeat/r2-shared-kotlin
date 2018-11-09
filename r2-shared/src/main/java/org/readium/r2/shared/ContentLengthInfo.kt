@@ -30,8 +30,9 @@ class ContentLengthInfo(contentLengthPairs: List<Pair<Link, Int>>) {
         }
     }
 
-    fun pageProgressFor(currentDocumentIndex: Int, currentPageInDocument: Int, documentTotalPages: Int): PageProgress {
-        if (currentPageInDocument < 1 || currentPageInDocument > documentTotalPages) throw Throwable("Invalid pages")
+    fun pageProgressFor(currentDocumentIndex: Int, currentPageInDocument: Int, documentTotalPages: Int): PageProgress? {
+        // this can happen sometimes - solve it by returning null and handle the position where it's used
+        if (currentPageInDocument < 1 || currentPageInDocument > documentTotalPages) return null
 
         val documentStartProgress = (currentPageInDocument - 1).toDouble() / documentTotalPages.toDouble()
         val documentEndProgress = currentPageInDocument.toDouble() / documentTotalPages.toDouble()
